@@ -11,14 +11,15 @@
         <div class="page-content infinite-scroll-content">
             <div class="block">
                 <p class="row">
-                    <input onblur="this.focus()" autofocus type="text" name="name" id="barCodeInput" onkeypress="onkeypressFunction(event.keyCode)" placeholder="Штрихкод товара">
+                    <input  autofocus type="text" name="name" id="barCodeInput" onkeypress="onkeypressFunction(event.keyCode)" placeholder="Штрихкод товара">
+                    <!--onblur="this.focus()"-->
 <span>
 <button class="col button button-raised button-round" onclick="createTableRow()">+</button>
     <!--enterBarCode()-->
 </span>
                 </p>
             </div>
-            <table id="inventoryTable" style="width:calc(100% - 10px)">
+            <table id="inventoryTable" style="width:calc(100% - 10px); margin-bottom: 60px">
                 <tr>
                     <th onclick="alert('TD clicked !')">Номер</th>
                     <!--<th width="80px;"></th>-->

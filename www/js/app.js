@@ -90,18 +90,19 @@ function createTableRow(){
 }
 
 function showRealQtyFunction(cell,displayedQty, prodName){
-  var el='<br><input id="inputRealQty" type="number" style="text-align:center" value="'+displayedQty+'"></<input>';
+  var input='<br><input id="inputRealQty" type="number" style="text-align:center" value="'+displayedQty+'"></<input>';
   var realQtyDialog=app.dialog.create({
-    content:el,
+    destroyOnClose:true,
+    content:input,
     title: 'Фактический остаток',
     text:prodName,
     on:{
-      open:function(){
-        unfocusBarcodeInput()
-      },
-      close:function(){
-        focusBarcodeInput()
-      },
+      //open:function(){
+      //  unfocusBarcodeInput()
+      //},
+      //close:function(){
+      //  focusBarcodeInput()
+      //},
       opened:function(){
         document.getElementById("inputRealQty").focus();
       }
@@ -126,12 +127,12 @@ function showRealQtyFunction(cell,displayedQty, prodName){
 
   realQtyDialog.open('');
 }
-function unfocusBarcodeInput(){
-  var barcodeInput=document.getElementById("barCodeInput");
-  barcodeInput.onblur=function(){};
-  barcodeInput.blur();
-}
-function focusBarcodeInput(){
-  var barcodeInput=document.getElementById("barCodeInput");
-  barcodeInput.onblur=barcodeInput.focus();
-}
+//function unfocusBarcodeInput(){
+//  var barcodeInput=document.getElementById("barCodeInput");
+//  barcodeInput.onblur=function(){};
+//  barcodeInput.blur();
+//}
+//function focusBarcodeInput(){
+//  var barcodeInput=document.getElementById("barCodeInput");
+//  barcodeInput.onblur=barcodeInput.focus();
+//}
