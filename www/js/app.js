@@ -5,26 +5,7 @@ var $$ = Dom7;
 // Framework7 App main instance
 var app  = new Framework7({
   root: '#app', // App root element
-  id: 'io.framework7.testapp', // App bundle ID
-  name: 'Framework7', // App name
   theme: 'auto', // Automatic theme detection
-  // App root data
-  domCache:true,
-  //data: function () {
-  //  return {
-  //    user: {
-  //      firstName: 'John',
-  //      lastName: 'Doe',
-  //    },
-  //  };
-  //},
-  // App root methods
-  //methods: {
-  //  helloWorld: function () {
-  //    app.dialog.alert('Hello World!');
-  //  },
-  //},
-  // App routes
   routes: routes
 });
 
@@ -34,43 +15,16 @@ var mainView = app.views.create('.view-main', {
   domCache:true
 });
 
-//var mainView=app.views.add('.view-main', {domCache:true});
 
-//var mainView = app.views.create('.view-main', {
-//  on: {
-//    pageInit: function () {
-//      console.log('page init')
-//    }
-//  },
-//  domCache:true
+//$$('.login-screen .list-button').on('click', function () {
+//  var uname = $$('.login-screen input[name = "username"]').val();
+//  var pwd = $$('.login-screen input[name = "password"]').val();
+//  console.log('!!!!!!! Clicked');
+//  mainView.router.load({pageName: 'about'});
+//  //app.alert('Username: ' + uname + ', Password: ' + pwd, function () {
+//  //  app.closeModal('.login-screen');
+//  //});
 //});
-
-
-//app.loginScreen.open;
-
-$$('.login-screen .list-button').on('click', function () {
-  var uname = $$('.login-screen input[name = "username"]').val();
-  var pwd = $$('.login-screen input[name = "password"]').val();
-
-  console.log('!!!!!!! Clicked');
-  mainView.router.load({pageName: 'about'});
-  //app.alert('Username: ' + uname + ', Password: ' + pwd, function () {
-  //  app.closeModal('.login-screen');
-  //});
-});
-
-//$$(document).on('page:init', function (e) {
-//  // Do something here when page loaded and initialized
-//  console.log('page:init=');
-//});
-
-//$$(document).on('page:init', '.page[data-page="about"]', function (e) {
-//  // Do something here when page with data-page="about" attribute loaded and initialized
-//
-//  console.log('page about init');
-//});
-
-
 
 //Login Screen Demo
 //$$('#my-login-screen .login-button').on('click', function () {
@@ -103,25 +57,18 @@ $$('.login-screen .list-button').on('click', function () {
 //  //});
 //
 //});
-//function enterBarCode(){
-//  var input = document.getElementById("barCodeInput");
-//  var value=input.value;
-//  console.log('enterBarCode clicked!!! input.value=',value);
-//}
-
 
 
 var rowNum=1;
 function onkeypressFunction(keyCode){
   if(keyCode==13){
-    //alert("onkeypressFunction keyCode  13="+keyCode);
     createTableRow();
   }
 }
 
-function createTableRow(){                                 console.log('createTableRow=');
-  var barcode=$$("#barCodeInput").val();                   console.log('barcode=', barcode);
-  if(document.getElementById(barcode)){    console.log('document.getElementById(barcode)');
+function createTableRow(){
+  var barcode=$$("#barCodeInput").val();
+  if(document.getElementById(barcode)){
     document.getElementById(barcode).innerText=parseInt(document.getElementById(barcode).innerText)+1;
     document.getElementById("barCodeInput").value='';
     return;

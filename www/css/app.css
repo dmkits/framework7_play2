@@ -4,9 +4,6 @@ table {
     border-collapse: collapse;
     margin:5px;
 }
-
-
-
 th{
     border: 1px solid black;
     background-color: lightblue;
@@ -30,7 +27,3 @@ td{
 .blue-text{
     color:darkblue;
 }
-/*.lowerRow {*/
-    /*/!*border: 1px solid darkred;*!/*/
-    /*border-left: 1px solid lightgrey;*/
-/*}*/
