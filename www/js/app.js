@@ -92,6 +92,9 @@ function createTableRow(){
   var tdRef=document.createElement('td');
   var tdReal=document.createElement('td');
   tdReal.id=barcode;
+  tdReal.onclick=  function(){
+    showRealQtyFunction(this, this.innerText.trim(),tdProdName.innerText);
+  };
 
   tdBarCode.innerText=barcode;
   tdUm.innerText='шт';
@@ -101,7 +104,6 @@ function createTableRow(){
   tdUm.className='text-centered';
   tdRef.className='text-right';
   tdReal.className='text-right';
-
 
   trLower.appendChild(tdBarCode);
   trLower.appendChild(tdUm);
@@ -115,4 +117,51 @@ function createTableRow(){
 
   document.getElementById("barCodeInput").value='';
   rowNum++;
+}
+
+function showRealQtyFunction(cell,displayedQty, prodName){
+  var el='<br><input id="inputRealQty" type="number" style="text-align:center" value="'+displayedQty+'"></<input>';
+  var realQtyDialog=app.dialog.create({
+    content:el,
+    title: 'Фактический остаток',
+    text:prodName,
+    on:{
+      open:function(){
+        unfocusBarcodeInput()
+      },
+      close:function(){
+        focusBarcodeInput()
+      },
+      opened:function(){
+        document.getElementById("inputRealQty").focus();
+      }
+    },
+    buttons:[
+      {
+        text:"ОТМЕНА",
+        onClick:function(){
+          realQtyDialog.close();
+        }
+      },
+      {
+        text:"ВВОД",
+        keyCodes:[13],
+        onClick:function(){
+          cell.innerText=document.getElementById("inputRealQty").value.trim() || 0;
+          realQtyDialog.close();
+        }
+      }
+    ]
+  });
+
+  realQtyDialog.open('');
+}
+function unfocusBarcodeInput(){
+  var barcodeInput=document.getElementById("barCodeInput");
+  barcodeInput.onblur=function(){};
+  barcodeInput.blur();
+}
+function focusBarcodeInput(){
+  var barcodeInput=document.getElementById("barCodeInput");
+  barcodeInput.onblur=barcodeInput.focus();
 }
