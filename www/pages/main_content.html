@@ -4,22 +4,44 @@
     <div class="navbar">
         <div class="navbar-inner">
             <div class="title sliding">Инвентаризация</div>
+            <div class="subnavbar" >
+                <!--style="background-color: white; padding:0 15px 0 15px;"-->
+
+                <div class="block">
+                    <p class="row">
+                        <input  autofocus type="text" name="name" id="barCodeInput" onblur="this.focus()" onkeypress="onkeypressFunction(event.keyCode)" placeholder="Штрихкод товара">
+                        <!--onblur="this.focus()"-->
+<span>
+<button class="col button button-outline button-round" onclick="createTableRow()">ВВОД</button>
+    <!--style="background-color: #2196f3; float:right"-->
+    <!--enterBarCode()-->
+</span>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="page" id="main_content-view" >
-        <div class="page-content infinite-scroll-content">
-            <div class="block">
-                <p class="row">
-                    <input  autofocus type="text" name="name" id="barCodeInput" onkeypress="onkeypressFunction(event.keyCode)" placeholder="Штрихкод товара">
-                    <!--onblur="this.focus()"-->
-<span>
-<button class="col button button-raised button-round" onclick="createTableRow()">+</button>
-    <!--enterBarCode()-->
-</span>
-                </p>
-            </div>
-            <table id="inventoryTable" style="width:calc(100% - 10px); margin-bottom: 60px">
+        <div class="page-content ">
+            <!--infinite-scroll-content-->
+
+            <!--<div class="block">-->
+                <!--<p class="row">-->
+                    <!--<input  autofocus type="text" name="name" id="barCodeInput" onkeypress="onkeypressFunction(event.keyCode)" placeholder="Штрихкод товара">-->
+                    <!--&lt;!&ndash;onblur="this.focus()"&ndash;&gt;-->
+<!--<span>-->
+<!--<button class="col button button-raised button-round" onclick="createTableRow()">+</button>-->
+    <!--&lt;!&ndash;enterBarCode()&ndash;&gt;-->
+<!--</span>-->
+                <!--</p>-->
+            <!--</div>-->
+
+            <table  style="width:calc(100% - 10px); margin-bottom: 60px;">
+                <!--id="inventoryTable"-->
+                <!--position: fixed;-->
+                <!---->
+                <thead style=" width:calc(100% - 10px); margin-bottom: 60px;">
                 <tr>
                     <th onclick="alert('TD clicked !')">Номер</th>
                     <!--<th width="80px;"></th>-->
@@ -28,6 +50,11 @@
                     <th>Учетное кол-во</th>
                     <th>Факт. кол-во</th>
                 </tr>
+                </thead>
+
+                <tbody id="inventoryTable" style="position: relative; width:calc(100% - 10px); margin-bottom: 60px;">
+
+                </tbody>
                 <!--<tr>-->
                     <!--<td onclick="alert('TD clicked !')" rowspan="2">1</td>-->
                     <!--<td colspan="4">Какой-то там супер товар </td>-->

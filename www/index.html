@@ -35,12 +35,32 @@
         <!-- Login form -->
         <form>
           <div class="list">
-            <ul>
+            <!--<ul>-->
+              <!--<li>-->
+                <!--<a class="item-link item-content" href="#" id="autocomplete-standalone">-->
+                  <!--<input type="hidden">-->
+                  <!--<div class="item-inner">-->
+                    <!--<div class="item-title">Favorite Fruite</div>-->
+                    <!--<div class="item-after"></div>-->
+                  <!--</div>-->
+                <!--</a>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<a class="item-link item-content" href="#" id="autocomplete-standalone">-->
+                  <!--<input type="hidden">-->
+                  <!--<div class="item-inner">-->
+                    <!--<div class="item-title">Favorite Fruite</div>-->
+                    <!--<div class="item-after"></div>-->
+                  <!--</div>-->
+                <!--</a>-->
+              <!--</li>-->
               <li class="item-content item-input">
                 <div class="item-inner">
+                  <!--<div class="item-title">Favorite Fruit</div>-->
+                  <!--<div class="item-after"></div>-->
                   <div class="item-title item-label">Имя</div>
                   <div class="item-input-wrap">
-                    <input type="text" name="username" placeholder="Имя">
+                    <input type="text" onfocus="this.blur()" onclick="selectUserDialog()" id="#autocomplete-standalone" name="username" placeholder="Имя">
                     <span class="input-clear-button"></span>
                   </div>
                 </div>

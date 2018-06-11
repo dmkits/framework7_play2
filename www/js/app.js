@@ -15,11 +15,35 @@ var mainView = app.views.create('.view-main', {
   domCache:true
 });
 
+var users=[
+  {"id":"1", "name":"anna", pswd:"123"},
+  {"id":"2", "name":"borya", pswd:"123"},
+  {"id":"3", "name":"vasya", pswd:"123"},
+  {"id":"4", "name":"gena", pswd:"123"},
+  {"id":"5", "name":"diana", pswd:"123"},
+  {"id":"6", "name":"anna1", pswd:"123"},
+  {"id":"7", "name":"borya1", pswd:"123"},
+  {"id":"8", "name":"vasya1", pswd:"123"},
+  {"id":"9", "name":"gena1", pswd:"123"},
+  {"id":"10", "name":"diana1", pswd:"123"},
+  {"id":"11", "name":"anna2", pswd:"123"},
+  {"id":"12", "name":"borya2", pswd:"123"},
+  {"id":"13", "name":"vasya2", pswd:"123"},
+  {"id":"14", "name":"gena2", pswd:"123"},
+  {"id":"15", "name":"diana2", pswd:"123"}
+];
 //Login Screen Demo
 $$('#my-login-screen .login-button').on('click', function () {
   var username = $$('#my-login-screen [name="username"]').val();
   var password = $$('#my-login-screen [name="password"]').val();
-  if(!(username=="user" && password=='123') ){
+  var ligInSuccess=false;
+  for(var k in users){
+    if(users[k].name==username){
+      if(users[k].pswd==password)ligInSuccess=true;
+      break;
+    }
+  }
+  if(!ligInSuccess){
     app.dialog.alert("Неверное имя или пароль","", function(){
       $$('#my-login-screen [name="username"]').val("");
       $$('#my-login-screen [name="password"]').val("");
@@ -27,7 +51,6 @@ $$('#my-login-screen .login-button').on('click', function () {
   }else
     mainView.router.navigate('/main_content/');
 });
-
 
 var rowNum=1;
 function onkeypressFunction(keyCode){
@@ -97,12 +120,12 @@ function showRealQtyFunction(cell,displayedQty, prodName){
     title: 'Фактический остаток',
     text:prodName,
     on:{
-      //open:function(){
-      //  unfocusBarcodeInput()
-      //},
-      //close:function(){
-      //  focusBarcodeInput()
-      //},
+      open:function(){
+        unfocusBarcodeInput()
+      },
+      close:function(){
+        focusBarcodeInput()
+      },
       opened:function(){
         document.getElementById("inputRealQty").focus();
       }
@@ -127,12 +150,43 @@ function showRealQtyFunction(cell,displayedQty, prodName){
 
   realQtyDialog.open('');
 }
-//function unfocusBarcodeInput(){
-//  var barcodeInput=document.getElementById("barCodeInput");
-//  barcodeInput.onblur=function(){};
-//  barcodeInput.blur();
-//}
-//function focusBarcodeInput(){
-//  var barcodeInput=document.getElementById("barCodeInput");
-//  barcodeInput.onblur=barcodeInput.focus();
-//}
+
+var usersDialog;
+function selectUserDialog(){
+  usersDialog=app.dialog.create({
+    content:generateUserDialogContent(users)
+
+  });
+  usersDialog.open('');
+}
+
+function generateUserDialogContent(users){
+  if(!users || users.length==0) return '';
+  var innerHtml='<div  style="height: 300px; overflow-y: scroll; font-size: 30px;">';
+  for (var k in users){
+    var user=users[k];
+    var username=user.name.toString();
+    innerHtml+='<li onclick="setUserloginData(\''+username+'\')">'+user.name+'<br>';
+  }
+  innerHtml+='</ul>';
+
+  innerHtml+='</div>';
+  return innerHtml;
+}
+
+
+function setUserloginData(username){
+  usersDialog.close();
+  $$('#my-login-screen [name="username"]').val(username);
+}
+
+
+function unfocusBarcodeInput(){
+  var barcodeInput=document.getElementById("barCodeInput");
+  barcodeInput.onblur=function(){};
+  barcodeInput.blur();
+}
+function focusBarcodeInput(){
+  var barcodeInput=document.getElementById("barCodeInput");
+  barcodeInput.onblur=barcodeInput.focus();
+}
