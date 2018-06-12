@@ -37,22 +37,22 @@
                 <!--</p>-->
             <!--</div>-->
 
-            <table  style="width:calc(100% - 10px); margin-bottom: 60px;">
+            <table id="tableWithFixedHead" style="width:calc(100% - 10px); margin-bottom: 60px;">
                 <!--id="inventoryTable"-->
                 <!--position: fixed;-->
                 <!---->
-                <thead style=" width:calc(100% - 10px); margin-bottom: 60px;">
-                <tr>
-                    <th onclick="alert('TD clicked !')">Номер</th>
+                <thead style="position:fixed; top:104px; z-index: 100">
+                <tr  id="tableFixedHeader">
+                    <th id="num_td">№ п/п</th>
                     <!--<th width="80px;"></th>-->
-                    <th>Штрих код</th>
-                    <th>ед.Изм</th>
-                    <th>Учетное кол-во</th>
-                    <th>Факт. кол-во</th>
+                    <th id="code_td">Штрих код</th>
+                    <th id="um_td">ед.Изм</th>
+                    <th id="doc_qty">Учетное кол-во</th>
+                    <th id="real_qty">Факт. кол-во</th>
                 </tr>
                 </thead>
 
-                <tbody id="inventoryTable" style="position: relative; width:calc(100% - 10px); margin-bottom: 60px;">
+                <tbody id="inventoryTable" style="position: absolute; top:170px">
 
                 </tbody>
                 <!--<tr>-->

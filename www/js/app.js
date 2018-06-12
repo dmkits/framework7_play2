@@ -89,6 +89,14 @@ function createTableRow(){
     showRealQtyFunction(this, this.innerText.trim(),tdProdName.innerText);
   };
 
+  var width = document.getElementById('num_td').offsetWidth;
+  console.log('width=', width);
+  tdRowNum.style.width=document.getElementById('num_td').offsetWidth+"px";
+  tdBarCode.style.width=document.getElementById('code_td').offsetWidth + "px";
+  tdUm.style.width=document.getElementById('um_td').offsetWidth+ "px";
+  tdRef.style.width=document.getElementById('doc_qty').offsetWidth+ "px";
+  tdReal.style.width=document.getElementById('real_qty').offsetWidth+ "px";
+
   tdBarCode.innerText=barcode;
   tdUm.innerText='шт';
   tdRef.innerText='1';
@@ -190,3 +198,13 @@ function focusBarcodeInput(){
   var barcodeInput=document.getElementById("barCodeInput");
   barcodeInput.onblur=barcodeInput.focus();
 }
+
+//function setHeaderFixed(){
+//  //alert("div scrolled");
+//  var header=document.getElementById("fixedHeader");
+//  var width=document.getElementById("prodTable").offsetWidth;
+//  console.log('width=', width);
+//  header.style.width=width+"px";
+//  document.getElementById("fixedTr").style.width=width+"px";
+//  header.style.position='fixed';
+//}
