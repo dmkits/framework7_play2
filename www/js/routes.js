@@ -13,13 +13,15 @@ routes = [
       pageAfterIn: function (event, page) {
          //do something after page gets into the view
         document.getElementById("tableFixedHeader").style.maxWidth=document.getElementById("tableWithFixedHead").clientWidth+'px';
-        document.getElementById("inventoryTable").style.maxWidth=document.getElementById("tableWithFixedHead").clientWidth+'px';
-        document.getElementById("inventoryTableTable").style.marginTop=
+        //document.getElementById("inventoryTable").style.maxWidth=document.getElementById("tableWithFixedHead").clientWidth+'px';
+        document.getElementById("inventoryTableTableDiv").style.maxWidth=document.getElementById("tableWithFixedHead").clientWidth+'px';
+      //inventoryTableTableDiv
+        //document.getElementById("inventoryTableTableDiv").style.wordWrap="break-word";
+        document.getElementById("inventoryTableTableDiv").style.marginTop=
             ( document.getElementById("tableFixedHeader").offsetHeight
            //+ document.getElementById("inventoryNavbar").offsetHeight
             //document.getElementById("inventorySubNavbar").offsetHeight
             )  +'px';
-
         //
         //console.log('width=', document.getElementById("tableWithFixedHead").clientWidth+'px'); //inventoryTable
         document.getElementById("tableFixedHeader").style.position='fixed';

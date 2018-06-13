@@ -2,7 +2,7 @@
 
 table {
     table-layout:fixed;
-    word-wrap:break-word;
+    /*word-wrap:break-word;*/
     border-collapse: collapse;
     /*margin:5px;*/
 }
@@ -13,12 +13,12 @@ th{
     padding: 0 5px 0 5px;
 }
 
-td{
+ td{
     border: 1px solid black;
     padding: 0 5px 0 5px;
     /*overflow: hidden;*/
     word-wrap:break-word;
-    white-space:pre-wrap;
+    /*white-space:pre-wrap;*/
 }
 
 #login-button-div{
