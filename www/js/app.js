@@ -1,4 +1,3 @@
-
 // Dom7
 var $$ = Dom7;
 
@@ -67,6 +66,8 @@ function createTableRow(){
     return;
   }
   var mainTable=document.getElementById('inventoryTable');
+  var tbody=document.createElement('tr');
+
   var trHigher=document.createElement('tr');
   var tdRowNum=document.createElement('td');
   var tdProdName=document.createElement('td');
@@ -74,7 +75,10 @@ function createTableRow(){
   tdRowNum.innerText=rowNum.toString();
   tdRowNum.className='text-centered';
 
-  tdProdName.innerText="Товар со штрих-кодом "+barcode;
+  //tdProdName.style.overflow="hidden";        //white-space: nowrap
+  //tdProdName.style.whiteSpace="nowrap";
+
+  tdProdName.innerText="Товар со штрих-кодом"+barcode;
   tdProdName.className="blue-text";
   trHigher.appendChild(tdRowNum);
   trHigher.appendChild(tdProdName);
@@ -85,8 +89,10 @@ function createTableRow(){
   var tdRef=document.createElement('td');
   var tdReal=document.createElement('td');
   tdReal.id=barcode;
-  tdReal.onclick=  function(){
-    showRealQtyFunction(this, this.innerText.trim(),tdProdName.innerText);
+  tbody.onclick=  function(){
+    showRealQtyFunction(tdReal, tdReal.innerText.trim(),tdProdName.innerText);
+    if(document.getElementById('clickedTableRow')) document.getElementById('clickedTableRow').id="";
+    tbody.id="clickedTableRow";
   };
 
 
@@ -104,7 +110,6 @@ function createTableRow(){
   //tdRef.style.width="70px";
   //tdReal.style.width="70px";
 
-
   tdRowNum.style.width=(document.getElementById('num_td').offsetWidth-11) + "px";
   //tdBarCode.style.width=document.getElementById('code_td').style.width + "px";
   tdBarCode.style.width=(document.getElementById('code_td').offsetWidth-11) + "px";
@@ -113,7 +118,6 @@ function createTableRow(){
   tdReal.style.width=(document.getElementById('real_qty').offsetWidth-11) + "px";
 
   tdBarCode.innerText=barcode;
-  tdBarCode.style.wordWrap="break-word";
   tdUm.innerText='шт';
   tdRef.innerText='1';
   tdReal.innerText='1';
@@ -127,12 +131,14 @@ function createTableRow(){
   trLower.appendChild(tdRef);
   trLower.appendChild(tdReal);
 
-  mainTable.appendChild(trHigher);
-  mainTable.appendChild(trLower);
+  tbody.appendChild(trHigher);
+  tbody.appendChild(trLower);
+  mainTable.appendChild(tbody);
+
   tdRowNum.rowSpan='2';
   tdProdName.colSpan='4';
 
-  document.getElementById("barCodeInput").value='';
+  document.getElementById("barCodeInput").value='';  //clickedTableRow
   rowNum++;
 }
 
