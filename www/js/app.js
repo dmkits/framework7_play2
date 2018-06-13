@@ -89,13 +89,31 @@ function createTableRow(){
     showRealQtyFunction(this, this.innerText.trim(),tdProdName.innerText);
   };
 
-  var width = document.getElementById('num_td').offsetWidth;
-  console.log('width=', width);
-  tdRowNum.style.width=document.getElementById('num_td').offsetWidth+"px";
-  tdBarCode.style.width=document.getElementById('code_td').offsetWidth + "px";
-  tdUm.style.width=document.getElementById('um_td').offsetWidth+ "px";
-  tdRef.style.width=document.getElementById('doc_qty').offsetWidth+ "px";
-  tdReal.style.width=document.getElementById('real_qty').offsetWidth+ "px";
+
+  //tdRowNum.style.width=document.getElementById('num_td').width+"px";
+  ////tdBarCode.style.width=document.getElementById('code_td').style.width + "px";
+  //tdBarCode.style.width=(document.getElementById('code_td').offsetWidth-10) + "px";
+  //tdUm.style.width=document.getElementById('um_td').width+ "px";
+  //tdRef.style.width=document.getElementById('doc_qty').width+ "px";
+  //tdReal.style.width=document.getElementById('real_qty').width+ "px";
+
+  //tdRowNum.style.width="70px";
+  //tdBarCode.style.width="48px";
+  //tdBarCode.style.width=(document.getElementById('code_td').offsetWidth-10) + "px";
+  //tdUm.style.width="70px";
+  //tdRef.style.width="70px";
+  //tdReal.style.width="70px";
+
+
+  tdRowNum.style.width=(document.getElementById('num_td').offsetWidth-11) + "px";
+  //tdBarCode.style.width=document.getElementById('code_td').style.width + "px";
+  tdBarCode.style.width=(document.getElementById('code_td').offsetWidth-11) + "px";
+  tdUm.style.width=(document.getElementById('um_td').offsetWidth-11) + "px";
+  tdRef.style.width=(document.getElementById('doc_qty').offsetWidth-11) + "px";
+  tdReal.style.width=(document.getElementById('real_qty').offsetWidth-11) + "px";
+
+
+
 
   tdBarCode.innerText=barcode;
   tdUm.innerText='шт';
@@ -187,7 +205,6 @@ function setUserloginData(username){
   usersDialog.close();
   $$('#my-login-screen [name="username"]').val(username);
 }
-
 
 function unfocusBarcodeInput(){
   var barcodeInput=document.getElementById("barCodeInput");
