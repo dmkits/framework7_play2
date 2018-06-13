@@ -112,9 +112,6 @@ function createTableRow(){
   tdRef.style.width=(document.getElementById('doc_qty').offsetWidth-11) + "px";
   tdReal.style.width=(document.getElementById('real_qty').offsetWidth-11) + "px";
 
-
-
-
   tdBarCode.innerText=barcode;
   tdUm.innerText='шт';
   tdRef.innerText='1';
