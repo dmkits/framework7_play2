@@ -1,23 +1,63 @@
 
-<div class="page " data-name="prod_table">
+<div class="page page-with-subnavbar " data-name="prod_table">
     <!-- Top Navbar -->
     <div class="navbar">
         <div class="navbar-inner">
             <div class="title sliding">Инвентаризация</div>
-            <div class="subnavbar" >
+            <div class="subnavbar">
+                <!--<div class="subnavbar-inner">-->
+                    <div class="block">
+                        <p class="row">
+                            <input  autofocus type="text" name="name" id="barCodeInput" onblur="this.focus()" onkeypress="onkeypressFunction(event.keyCode)" placeholder="Штрихкод товара">
+                            <span><button class="col button button-outline button-round" onclick="createTableRow()">ВВОД</button></span>
+                        </p>
+                    </div>
+
+                <div class="subnavbar">
+                    <div>
+                        <table id="tableWithFixedHead">
+                            <!--style="width:calc(100% - 10px);"-->
+                            <!--id="inventoryTable"-->
+                            <!--position: fixed;-->
+                            <!---->
+                            <thead>
+                            <tr  id="tableFixedHeader">
+                            <th id="num_td" width="43px">№ п/п</th>
+                            <!--<th width="80px;"></th>-->
+                            <th id="code_td">Штрих код</th>
+                            <th id="um_td" width="77px">ед.Изм</th>
+                            <th id="doc_qty" width="88px">Учетное кол-во</th>
+                            <th id="real_qty"  width="70px">Факт. кол-во</th>
+                            </tr>
+                            </thead>
+                            </table>
+                    </div>
+                </div>
+
+
                 <!--style="background-color: white; padding:0 15px 0 15px;"-->
 
-                <div class="block">
-                    <p class="row">
-                        <input  autofocus type="text" name="name" id="barCodeInput" onblur="this.focus()" onkeypress="onkeypressFunction(event.keyCode)" placeholder="Штрихкод товара">
-                        <!--onblur="this.focus()"-->
-<span>
-<button class="col button button-outline button-round" onclick="createTableRow()">ВВОД</button>
-    <!--style="background-color: #2196f3; float:right"-->
-    <!--enterBarCode()-->
-</span>
-                    </p>
-                </div>
+
+                <!--<div>-->
+                    <!--<p class="row">-->
+                    <!--<table id="tableWithFixedHead">-->
+                        <!--&lt;!&ndash;style="width:calc(100% - 10px);"&ndash;&gt;-->
+                        <!--&lt;!&ndash;id="inventoryTable"&ndash;&gt;-->
+                        <!--&lt;!&ndash;position: fixed;&ndash;&gt;-->
+                        <!--&lt;!&ndash;&ndash;&gt;-->
+                        <!--<thead>-->
+                        <!--<tr  id="tableFixedHeader">-->
+                            <!--<th id="num_td">№ п/п</th>-->
+                            <!--&lt;!&ndash;<th width="80px;"></th>&ndash;&gt;-->
+                            <!--<th id="code_td">Штрих код</th>-->
+                            <!--<th id="um_td">ед.Изм</th>-->
+                            <!--<th id="doc_qty">Учетное кол-во</th>-->
+                            <!--<th id="real_qty">Факт. кол-во</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                    <!--</table>-->
+                    <!--</p>-->
+                <!--</div>-->
             </div>
         </div>
     </div>
@@ -37,22 +77,14 @@
                 <!--</p>-->
             <!--</div>-->
 
-            <table id="tableWithFixedHead" style="width:calc(100% - 10px); margin-bottom: 60px;">
-                <!--id="inventoryTable"-->
-                <!--position: fixed;-->
-                <!---->
-                <thead style="position:fixed; top:104px; z-index: 100">
-                <tr  id="tableFixedHeader">
-                    <th id="num_td">№ п/п</th>
-                    <!--<th width="80px;"></th>-->
-                    <th id="code_td">Штрих код</th>
-                    <th id="um_td">ед.Изм</th>
-                    <th id="doc_qty">Учетное кол-во</th>
-                    <th id="real_qty">Факт. кол-во</th>
-                </tr>
-                </thead>
 
-                <tbody id="inventoryTable" style="position: absolute; top:170px">
+
+
+            <table>
+
+                <tbody id="inventoryTable">
+
+                <!--style="position: absolute; top:170px"-->
 
                 </tbody>
                 <!--<tr>-->

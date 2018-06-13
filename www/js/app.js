@@ -89,13 +89,19 @@ function createTableRow(){
     showRealQtyFunction(this, this.innerText.trim(),tdProdName.innerText);
   };
 
-  var width = document.getElementById('num_td').offsetWidth;
-  console.log('width=', width);
-  tdRowNum.style.width=document.getElementById('num_td').offsetWidth+"px";
-  tdBarCode.style.width=document.getElementById('code_td').offsetWidth + "px";
-  tdUm.style.width=document.getElementById('um_td').offsetWidth+ "px";
-  tdRef.style.width=document.getElementById('doc_qty').offsetWidth+ "px";
-  tdReal.style.width=document.getElementById('real_qty').offsetWidth+ "px";
+  tdRowNum.style.width=document.getElementById('num_td').clientWidth+"px";
+  tdBarCode.style.width=document.getElementById('code_td').clientWidth + "px";
+  tdUm.style.width=document.getElementById('um_td').clientWidth+ "px";
+  tdRef.style.width=document.getElementById('doc_qty').clientWidth+ "px";
+  tdReal.style.width=document.getElementById('real_qty').clientWidth+ "px";
+
+
+
+  //tdRowNum.style.width="50px";
+  ////tdBarCode.style.width="100%";
+  ////tdUm.style.width="77px";
+  ////tdRef.style.width="88px";
+  ////tdReal.style.width= "70px";
 
   tdBarCode.innerText=barcode;
   tdUm.innerText='шт';
