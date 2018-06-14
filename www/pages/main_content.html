@@ -23,7 +23,7 @@
     </div>
 
     <div class="page" id="main_content-view" >
-        <div class="page-content">
+        <div class="page-content" id="pageConTentInventory">
             <!--infinite-scroll-content-->
 
             <!--<div class="block">-->
@@ -51,25 +51,23 @@
                     <th id="real_qty" style="width:50px;">Факт. кол-во</th>
                 </tr>
                 </thead>
-                </table>
+            </table>
 
             <table id="inventoryTable" style=" margin-bottom: 60px;">
-                <!--style="width:100%;"-->
-                <!--<tbody id="inventoryTable" >-->
-                <!--&lt;!&ndash;style="position: absolute; top:170px"&ndash;&gt;-->
-                <!--</tbody>-->
-                <!--<tr>-->
-                    <!--<td onclick="alert('TD clicked !')" rowspan="2">1</td>-->
-                    <!--<td colspan="4">Какой-то там супер товар </td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--&lt;!&ndash;<td></td>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<td></td>&ndash;&gt;-->
-                    <!--<td>111111111</td>-->
-                    <!--<td>шт</td>-->
-                    <!--<td>1</td>-->
-                    <!--<td>1</td>-->
-                <!--</tr>-->
+            </table>
+
+            <table id="tableWithFixedFooter" style="position:fixed; bottom:60px; z-index: 100">
+
+                <!--margin-bottom: 0px; padding-bottom: 60px;-->
+
+                <tfoot>
+                <tr  id="footTableFixedHeader" >
+                    <td id="totalRowQty">0</td>
+                    <td id="totalEmpty" ></td>
+                    <td  id="totalDocQty" >0</td>
+                    <td id="totalRealQty">0</td>
+                </tr>
+                </tfoot>
             </table>
         </div>
     </div>

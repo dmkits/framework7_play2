@@ -95,27 +95,13 @@ function createTableRow(){
     tbody.id="clickedTableRow";
   };
 
-
-  //tdRowNum.style.width=document.getElementById('num_td').width+"px";
-  ////tdBarCode.style.width=document.getElementById('code_td').style.width + "px";
-  //tdBarCode.style.width=(document.getElementById('code_td').offsetWidth-10) + "px";
-  //tdUm.style.width=document.getElementById('um_td').width+ "px";
-  //tdRef.style.width=document.getElementById('doc_qty').width+ "px";
-  //tdReal.style.width=document.getElementById('real_qty').width+ "px";
-
-  //tdRowNum.style.width="70px";
-  //tdBarCode.style.width="48px";
-  //tdBarCode.style.width=(document.getElementById('code_td').offsetWidth-10) + "px";
-  //tdUm.style.width="70px";
-  //tdRef.style.width="70px";
-  //tdReal.style.width="70px";
-
   tdRowNum.style.width=(document.getElementById('num_td').offsetWidth-11) + "px";
-  //tdBarCode.style.width=document.getElementById('code_td').style.width + "px";
   tdBarCode.style.width=(document.getElementById('code_td').offsetWidth-11) + "px";
   tdUm.style.width=(document.getElementById('um_td').offsetWidth-11) + "px";
   tdRef.style.width=(document.getElementById('doc_qty').offsetWidth-11) + "px";
+  tdRef.style.textAlign="center";
   tdReal.style.width=(document.getElementById('real_qty').offsetWidth-11) + "px";
+  tdReal.style.textAlign="center";
 
   tdBarCode.innerText=barcode;
   tdUm.innerText='шт';
@@ -123,8 +109,13 @@ function createTableRow(){
   tdReal.innerText='1';
 
   tdUm.className='text-centered';
-  tdRef.className='text-right';
-  tdReal.className='text-right';
+  //tdRef.className='text-right';
+  //tdReal.className='text-right';
+
+
+
+  tdRef.className='refQty';
+  tdReal.className='realQty';
 
   trLower.appendChild(tdBarCode);
   trLower.appendChild(tdUm);
@@ -138,12 +129,32 @@ function createTableRow(){
   tdRowNum.rowSpan='2';
   tdProdName.colSpan='4';
 
-  document.getElementById("barCodeInput").value='';  //clickedTableRow
+  document.getElementById("totalRowQty").innerHTML=rowNum;
+  setTotalQty();
+
+  document.getElementById("barCodeInput").value='';
   rowNum++;
 }
 
+function setTotalQty(){
+  var refQtylist = document.getElementsByClassName("refQty");
+  var realQtylist = document.getElementsByClassName("realQty");
+
+  var totalrefQty=0;
+  var totalrealQty=0;
+
+  for(var tdIndex=0; tdIndex<refQtylist.length; tdIndex++){
+    console.log('totalrealQty=', totalrealQty);
+    console.log('innerHTML=', refQtylist[tdIndex].innerHTML);
+    totalrealQty+=parseInt(refQtylist[tdIndex].innerHTML);
+    totalrefQty+=parseInt(realQtylist[tdIndex].innerHTML);
+  }
+  document.getElementById("totalDocQty").innerHTML=totalrealQty;
+  document.getElementById("totalRealQty").innerHTML=totalrefQty;
+}
+
 function showRealQtyFunction(cell,displayedQty, prodName){
-  var input='<br><input id="inputRealQty" type="number" style="text-align:center" value="'+displayedQty+'"></<input>';
+  var input='<br><input id="inputRealQty" type="number" style="text-align:center; border: 1px solid grey; padding: 5px" value="'+displayedQty+'"></<input>';
   var realQtyDialog=app.dialog.create({
     destroyOnClose:true,
     content:input,
@@ -151,14 +162,16 @@ function showRealQtyFunction(cell,displayedQty, prodName){
     text:prodName,
     on:{
       open:function(){
-        unfocusBarcodeInput()
+        unfocusBarcodeInput();
+        document.getElementById("inputRealQty").focus();
       },
       close:function(){
         focusBarcodeInput()
-      },
-      opened:function(){
-        document.getElementById("inputRealQty").focus();
       }
+      //,
+      //opened:function(){
+      //  //document.getElementById("inputRealQty").focus();
+      //}
     },
     buttons:[
       {
@@ -172,20 +185,20 @@ function showRealQtyFunction(cell,displayedQty, prodName){
         keyCodes:[13],
         onClick:function(){
           cell.innerText=document.getElementById("inputRealQty").value.trim() || 0;
+          setTotalQty();
           realQtyDialog.close();
         }
       }
     ]
   });
 
-  realQtyDialog.open('');
+  realQtyDialog.open();
 }
 
 var usersDialog;
 function selectUserDialog(){
   usersDialog=app.dialog.create({
     content:generateUserDialogContent(users)
-
   });
   usersDialog.open('');
 }
@@ -199,17 +212,14 @@ function generateUserDialogContent(users){
     innerHtml+='<li onclick="setUserloginData(\''+username+'\')">'+user.name+'<br>';
   }
   innerHtml+='</ul>';
-
   innerHtml+='</div>';
   return innerHtml;
 }
-
 
 function setUserloginData(username){
   usersDialog.close();
   $$('#my-login-screen [name="username"]').val(username);
 }
-
 function unfocusBarcodeInput(){
   var barcodeInput=document.getElementById("barCodeInput");
   barcodeInput.onblur=function(){};
@@ -219,13 +229,3 @@ function focusBarcodeInput(){
   var barcodeInput=document.getElementById("barCodeInput");
   barcodeInput.onblur=barcodeInput.focus();
 }
-
-//function setHeaderFixed(){
-//  //alert("div scrolled");
-//  var header=document.getElementById("fixedHeader");
-//  var width=document.getElementById("prodTable").offsetWidth;
-//  console.log('width=', width);
-//  header.style.width=width+"px";
-//  document.getElementById("fixedTr").style.width=width+"px";
-//  header.style.position='fixed';
-//}
