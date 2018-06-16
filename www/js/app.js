@@ -196,24 +196,78 @@ function showRealQtyFunction(cell,displayedQty, prodName){
 }
 
 var usersDialog;
+
+$$('#autocomplete-standalone').on('click', function(){
+  selectUserDialog();
+});
 function selectUserDialog(){
   usersDialog=app.dialog.create({
-    content:generateUserDialogContent(users)
+    content:generateUserDialogContent(users),
+    on: {
+      opened: function () {
+        console.log('dialog opened');
+        for (var f in users) {
+          var username=users[f].name;
+          //document.getElementById('loginDialog' + users[f].name).onclick = function () {
+          //  setUserloginData(username);
+          //}
+          $$('#loginDialog'+users[f].name).on('click', function(el){
+            console.log("ELEMENT="+JSON.stringify(el));
+           // setUserloginData(username);
+          })
+        }
+      }
+    }
   });
   usersDialog.open('');
 }
 
+
+
 function generateUserDialogContent(users){
   if(!users || users.length==0) return '';
   var innerHtml='<div  style="height: 300px; overflow-y: scroll; font-size: 30px;">';
+  innerHtml+='<ul>';
   for (var k in users){
     var user=users[k];
     var username=user.name.toString();
-    innerHtml+='<li onclick="setUserloginData(\''+username+'\')">'+user.name+'<br>';
+    //innerHtml+='<li onclick="setUserloginData(\''+username+'\')">'+user.name+'<br>';
+    innerHtml+='<li id="loginDialog'+username+'">'+username+'<br>';
+   //alert($$('#loginDialog'+username));
+   //
+   // $$('#loginDialog'+username).on('click', function(){
+   //   alert('loginDialog'+username);
+   //   setUserloginData(username);
+   // })
+
+    //document.getElementById('loginDialog'+username).onclick=function(){
+    //  alert('loginDialog'+username);
+    //  setUserloginData(username);
+    //};
   }
   innerHtml+='</ul>';
   innerHtml+='</div>';
+  console.log('innerHtml=', innerHtml);
   return innerHtml;
+
+  //if(!users || users.length==0) return '';
+  ////var div=$$('div');
+  //var div=$$.append('div');
+  //div.css({
+  //  height:"300px",
+  //  'overflow-y': 'scroll',
+  //  'font-size': '30px'
+  //});
+  //var ul=div.append('ul');
+  //for (var k in users){
+  //  var user=users[k];
+  //  var username=user.name.toString();
+  //  ul.append('li')
+  //      .on('click', function(){
+  //        setUserloginData(username);})
+  //      .html(user.name+'<br>') ;
+  //}
+  //return div;
 }
 
 function setUserloginData(username){
